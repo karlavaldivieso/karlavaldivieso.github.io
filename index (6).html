@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dr. Karla Valdivieso</title>
+<meta name="description" content="Dr. Karla Valdivieso — cellular senescence, spatial omics, aging and regeneration research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F6F1;
+    --ink:#1C1C1A;
+    --muted:#6E6C63;
+    --accent:#7B2D3F;
+    --accent-soft:rgba(123,45,63,0.09);
+    --line:#DEDACF;
+    --paper-dark:#181415;
+    --ink-dark:#E9E7DF;
+    --muted-dark:#8B928F;
+    --line-dark:#332A2C;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:radial-gradient(circle at 88% -10%, rgba(123,45,63,0.06), transparent 45%);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    transition:background .3s ease, color .3s ease;
+  }
+  body.dark{background:var(--paper-dark); background-image:radial-gradient(circle at 88% -10%, rgba(123,45,63,0.14), transparent 45%); color:var(--ink-dark);}
+  body.dark .muted{color:var(--muted-dark);}
+  body.dark nav{border-color:var(--line-dark);}
+  body.dark section, body.dark .panel-inner{border-color:var(--line-dark);}
+  body.dark .news-item, body.dark .pub, body.dark .role-block, body.dark .list-row{border-color:var(--line-dark);}
+  body.dark .tag{background:rgba(123,45,63,0.22); color:#D98FA1;}
+  body.dark .contact-links a, body.dark .news-item a{color:var(--ink-dark); border-color:var(--line-dark);}
+  body.dark .tab{color:var(--muted-dark);}
+  body.dark .tab.active{color:var(--ink-dark);}
+
+  .wrap{max-width:1280px; margin:0 auto; padding:0 56px;}
+  @media (max-width:700px){ .wrap{padding:0 22px;} }
+  .muted{color:var(--muted);}
+
+  nav{border-bottom:1px solid var(--line); padding:0; position:sticky; top:0; background:inherit; z-index:10; backdrop-filter:blur(6px);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px; padding:18px 48px;}
+  .brand{font-family:'Source Serif 4', serif; font-weight:600; font-size:17px; display:flex; align-items:center; gap:8px;}
+  .brand .dot{width:8px; height:8px; border-radius:50%; background:var(--accent); display:inline-block;}
+  .tabs{display:flex; gap:4px; list-style:none; margin:0; padding:0; align-items:center; flex-wrap:wrap;}
+  .tab{
+    background:none; border:none; cursor:pointer;
+    color:var(--muted); font-family:'Inter',sans-serif; font-size:14px; font-weight:500;
+    padding:7px 13px; border-radius:6px; transition:all .2s ease;
+  }
+  .tab:hover{color:var(--ink);}
+  body.dark .tab:hover{color:var(--ink-dark);}
+  .tab.active{color:var(--ink); background:var(--accent-soft);}
+  body.dark .tab.active{background:rgba(123,45,63,0.2);}
+  #themeToggle{background:none; border:1px solid var(--line); border-radius:20px; width:40px; height:24px; cursor:pointer; position:relative; padding:0; flex-shrink:0;}
+  body.dark #themeToggle{border-color:var(--line-dark);}
+  #themeToggle::after{content:'☀'; position:absolute; top:1px; left:2px; font-size:12px; width:19px; height:19px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; transition:transform .25s ease;}
+  body.dark #themeToggle::after{content:'☾'; transform:translateX(15px);}
+
+  .panel{display:none; animation:fadeIn .35s ease;}
+  .panel.active{display:block;}
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  header.hero{padding:64px 0 48px; position:relative;}
+  .hero-grid{display:grid; grid-template-columns:200px 1fr; gap:48px; align-items:start;}
+  .hero-photo{width:200px; height:200px; border-radius:6px; object-fit:cover; object-position:top; filter:grayscale(12%); box-shadow:0 14px 30px -14px rgba(28,28,26,0.35);}
+  .kicker{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:18px; display:flex; align-items:center; gap:8px;}
+  .kicker svg{flex-shrink:0;}
+  h1.title{font-family:'Source Serif 4', serif; font-weight:500; font-size:clamp(30px, 3.6vw, 40px); line-height:1.25; margin:0 0 16px;}
+  .byline{font-size:15px;}
+  .byline .role{display:block; color:var(--muted); margin-top:4px; font-size:14.5px;}
+  .byline a{color:var(--accent); text-decoration:none;}
+  .bio{margin-top:20px; font-size:15.5px; max-width:680px;}
+  .bio p{margin:0 0 14px;}
+  .bio a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent);}
+  @media (max-width:640px){ .hero-grid{grid-template-columns:1fr;} .hero-photo{width:140px; height:140px;} }
+
+  .panel-inner{padding:8px 0 40px; max-width:1000px;}
+  .panel h2{font-family:'Source Serif 4', serif; font-size:28px; font-weight:500; margin:0 0 6px;}
+  .panel .subhead{font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:30px; display:block;}
+  .panel h3{font-family:'Source Serif 4', serif; font-size:18px; font-weight:600; margin:28px 0 12px;}
+  .panel h3:first-of-type{margin-top:0;}
+
+  .news-item{display:flex; gap:18px; padding:11px 0; border-top:1px solid var(--line); font-size:15px; align-items:baseline;}
+  .news-item:first-of-type{border-top:none;}
+  .news-date{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted); flex-shrink:0; width:64px;}
+  .news-item a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line);}
+  .news-item a:hover{border-color:var(--accent); color:var(--accent);}
+  .news-item span.plain{color:var(--ink);}
+  body.dark .news-item span.plain{color:var(--ink-dark);}
+
+  .pub{padding:18px 0; border-top:1px solid var(--line);}
+  .pub:first-of-type{border-top:none;}
+  .pub-title{font-weight:600; font-size:16px; margin-bottom:4px;}
+  .pub-title a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line);}
+  .pub-title a:hover{color:var(--accent); border-color:var(--accent);}
+  .pub-meta{font-size:13.5px; color:var(--muted);}
+  .pub-note{font-size:13px; font-style:italic; color:var(--muted); margin-top:6px;}
+
+  .role-block{margin-bottom:18px; padding:14px 0; border-top:1px solid var(--line);}
+  .role-block:first-of-type{border-top:none; padding-top:0;}
+  .role-block .when{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted);}
+  .role-block .what{font-weight:600; font-size:15px; margin:3px 0 2px;}
+  .role-block .where{font-size:14px; color:var(--muted);}
+
+  .list-row{display:grid; grid-template-columns:70px 1fr; gap:16px; padding:10px 0; border-top:1px solid var(--line); font-size:14.5px;}
+  .list-row:first-of-type{border-top:none;}
+  .list-row .yr{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted); padding-top:1px;}
+  .list-row .award{font-weight:600;}
+
+  ul.plain{margin:0; padding-left:18px; font-size:14.5px;}
+  ul.plain li{margin-bottom:6px;}
+
+  .contact-links{display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:6px;}
+  .contact-links a{color:var(--ink); text-decoration:none; font-size:14.5px; border-bottom:1px solid var(--line); padding-bottom:1px;}
+  .contact-links a:hover{border-color:var(--accent); color:var(--accent);}
+
+  footer{padding:30px 0 60px; font-size:13px; color:var(--muted); border-top:1px solid var(--line); margin-top:20px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span>Dr. Karla Valdivieso</div>
+    <ul class="tabs" id="tabs">
+      <li><button class="tab active" data-tab="home">Home</button></li>
+      <li><button class="tab" data-tab="news">News</button></li>
+      <li><button class="tab" data-tab="publications">Publications</button></li>
+      <li><button class="tab" data-tab="cv">CV</button></li>
+      <li><button class="tab" data-tab="awards">Awards</button></li>
+      <li><button class="tab" data-tab="contact">Contact</button></li>
+    </ul>
+    <button id="themeToggle" aria-label="Toggle dark mode" onclick="document.body.classList.toggle('dark')"></button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- HOME -->
+<div class="panel active" id="panel-home">
+  <header class="hero">
+    <div class="kicker">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2" fill="currentColor"/></svg>
+      Cellular Senescence · Spatial Omics · Aging · Regeneration
+    </div>
+    <div class="hero-grid">
+      <img class="hero-photo" src="assets/karla.png" alt="Portrait of Dr. Karla Valdivieso">
+      <div>
+        <h1 class="title">Dr. Karla Valdivieso</h1>
+        <div class="byline">
+          <strong>Postdoctoral Researcher</strong>
+          <span class="role">University Hospital Bonn (UKB) / German Center for Neurodegenerative Diseases (DZNE)</span>
+          <span class="role"><a href="mailto:karla.valdivieso@dzne.de">karla.valdivieso@dzne.de</a></span>
+        </div>
+        <div class="bio">
+          <p>My research focuses on spatial omics approaches, cellular senescence, and the mechanisms of aging, with particular emphasis on tissue regeneration and age-associated dysfunction. I am currently a Postdoctoral Researcher with <a href="https://scholar.google.com/citations?hl=en&user=HLKNMEMAAAAJ" target="_blank" rel="noopener">Prof. Özgün Gökçe</a>, investigating brain aging and neurodegeneration using spatially resolved molecular and cellular approaches. I previously worked with <a href="https://scholar.google.co.uk/citations?user=xEhXNokAAAAJ&hl=en" target="_blank" rel="noopener">Prof. Diana Jurk</a> at the Mayo Clinic, studying the role of senescence in aging and age-related disease.</p>
+          <p>I received my Ph.D. in Life Sciences in 2024 at the University of Natural Resources and Life Sciences (BOKU Vienna, Austria) with a dissertation on the relationship between senescent cells and wound healing (supervisor: <a href="https://scholar.google.com/citations?user=EUq8ry4AAAAJ&hl=en" target="_blank" rel="noopener">Dr. Mikołaj Ogrodnik</a>, Ludwig Boltzmann Research Group on Senescence and Healing of Wounds).</p>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
+
+<!-- NEWS -->
+<div class="panel" id="panel-news">
+  <div class="panel-inner">
+    <h2>News</h2>
+    <span class="subhead">Recent updates</span>
+
+    <div class="news-item"><div class="news-date">2026</div><div><a href="https://www.nature.com/articles/s41556-026-01948-2" target="_blank" rel="noopener">First-author paper in Nature Cell Biology: "Transcription-independent induction of rapid-onset senescence is integral to healing"</a></div></div>
+    <div class="news-item"><div class="news-date">2026</div><div><span class="plain">Joined University Hospital Bonn (UKB) and the German Center for Neurodegenerative Diseases (DZNE) as a Postdoctoral Researcher, working on brain aging and spatially resolved approaches to neurodegeneration</span></div></div>
+    <div class="news-item"><div class="news-date">2026</div><div><a href="https://www.forbes.com.ec/liderazgo/la-biologa-under-30-lleva-su-talento-alemania-austria-eeuu-n85114" target="_blank" rel="noopener">Featured in an interview with Forbes Ecuador</a></div></div>
+    <div class="news-item"><div class="news-date">2025</div><div><span class="plain">Awarded the Montagna Symposium Directors' Award, Gleneden Beach, OR, USA</span></div></div>
+    <div class="news-item"><div class="news-date">2025</div><div><span class="plain">Best Poster Award, 6th Annual Midwest Aging Consortium (MAC) Research Symposium, Rochester, MN, USA</span></div></div>
+    <div class="news-item"><div class="news-date">2025</div><div><span class="plain">FEBS Advanced Course IUBMB Transcontinental Youth Travel Fund awarded for the Immunology, Metabolism and Ageing course, Austria</span></div></div>
+    <div class="news-item"><div class="news-date">2025</div><div><span class="plain">Joined the Mayo Clinic as a Postdoctoral Research Fellow</span></div></div>
+    <div class="news-item"><div class="news-date">2024</div><div><span class="plain">FEBS-IUBMB-ENABLE Conference Best Presentation Award, Singapore</span></div></div>
+    <div class="news-item"><div class="news-date">2024</div><div><span class="plain">Joined the Ludwig Boltzmann Institute for Experimental and Clinical Traumatology as a Postdoctoral Research Scientist</span></div></div>
+    <div class="news-item"><div class="news-date">2024</div><div><span class="plain">PhD in Life Sciences completed at BOKU Vienna, graduated with distinction</span></div></div>
+  </div>
+</div>
+
+<!-- PUBLICATIONS -->
+<div class="panel" id="panel-publications">
+  <div class="panel-inner">
+    <h2>Publications</h2>
+    <span class="subhead">Selected works</span>
+
+    <div class="pub">
+      <div class="pub-title"><a href="https://www.nature.com/articles/s41556-026-01948-2" target="_blank" rel="noopener">1. Transcription-independent induction of rapid-onset senescence is integral to healing</a></div>
+      <div class="pub-meta">Valdivieso, K., Rozmaric, T., Victorelli, S., et al. (2026). <em>Nature Cell Biology.</em></div>
+      <div class="pub-note">First demonstration that rapid-onset senescence operates independently of de novo transcription during wound repair, redefining the mechanistic basis of beneficial senescence.</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title"><a href="https://link.springer.com/article/10.1038/s44321-026-00400-0" target="_blank" rel="noopener">2. Tomatidine is a senotherapeutic compound that improves cognitive function and reduces cellular senescence in aged mice</a></div>
+      <div class="pub-meta">Costa, D.G., ..., Valdivieso, K., et al. (2026). <em>EMBO Molecular Medicine.</em> 18, 1530–1550.</div>
+      <div class="pub-note">Identifies tomatidine as a novel senolytic with translational potential for cognitive aging.</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title"><a href="https://doi.org/10.1093/gerona/glaf280" target="_blank" rel="noopener">3. The Sixth Annual Symposium of the Midwest Aging Consortium</a></div>
+      <div class="pub-meta">Sturmlechner, I., Ashiqueali, S.A., ..., Valdivieso, K., et al. (2025). <em>The Journals of Gerontology: Series A.</em> 81(3), glaf280.</div>
+      <div class="pub-note">Consortium proceedings reflecting cross-institutional aging research network activity.</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title"><a href="https://www.jidonline.org/article/S0022-202X(25)00560-3/abstract" target="_blank" rel="noopener">4. Platform for drug testing and studying rapid-onset signaling and induction of cellular phenotypes ex vivo</a></div>
+      <div class="pub-meta">Valdivieso, K., Dworak, H., Schädl, B., et al. (2025). <em>Journal of Investigative Dermatology.</em> 145, 3237–3240.</div>
+      <div class="pub-note">Describes a reproducible ex vivo skin platform enabling rapid screening of senescence-inducing compounds; directly applicable to drug discovery pipelines in dermatology and aging research.</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title"><a href="https://www.cell.com/developmental-cell/fulltext/S1534-5807(23)00154-5" target="_blank" rel="noopener">5. The p-rpS6-zone delineates wounding responses and the healing process</a></div>
+      <div class="pub-meta">Ring, N.A.R., Dworak, H., ..., Valdivieso, K., et al. (2023). <em>Developmental Cell.</em> 58, 981–992.</div>
+      <div class="pub-note">Discovery of a spatially distinct rpS6-phosphorylation zone governing wound response patterning.</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title"><a href="https://www.cell.com/developmental-cell/fulltext/S1534-5807(22)00245-3" target="_blank" rel="noopener">6. The role of senescence in cellular plasticity: Lessons from regeneration and development and implications for age-related diseases</a></div>
+      <div class="pub-meta">Ring, N.A.R., Valdivieso, K., Grillari, J., Redl, H., Ogrodnik, M. (2022). <em>Developmental Cell.</em> 57, 1083–1101.</div>
+      <div class="pub-note">Insights on senescence and plasticity in regeneration and development. BOKU Best Paper Award 2023.</div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title"><a href="https://doi.org/10.1016/j.mad.2021.111588" target="_blank" rel="noopener">7. Promises and challenges of senolytics in skin regeneration, pathology and ageing</a></div>
+      <div class="pub-meta">Pils, V., Ring, N.A.R., Valdivieso, K., et al. (2021). <em>Mechanisms of Ageing and Development.</em> 200, 111588.</div>
+      <div class="pub-note">Critical appraisal of senolytic strategies in the skin; widely cited in the senescence and wound healing literature.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CV -->
+<div class="panel" id="panel-cv">
+  <div class="panel-inner">
+    <h2>Curriculum Vitae</h2>
+    <span class="subhead">Positions, training &amp; activities</span>
+
+    <h3>Professional Experience</h3>
+    <div class="role-block"><div class="when">01/02/2026 – present</div><div class="what">Postdoctoral Researcher</div><div class="where">German Center for Neurodegenerative Diseases (DZNE) and University Hospital Bonn, Bonn, Germany</div></div>
+    <div class="role-block"><div class="when">01/01/2025 – 31/01/2026</div><div class="what">Postdoctoral Research Fellow</div><div class="where">Mayo Clinic, Rochester, MN, USA</div></div>
+    <div class="role-block"><div class="when">01/07/2024 – 31/12/2024</div><div class="what">Postdoctoral Research Scientist</div><div class="where">Ludwig Boltzmann Institute for Experimental and Clinical Traumatology, Vienna, Austria</div></div>
+    <div class="role-block"><div class="when">01/01/2021 – 30/06/2024</div><div class="what">Doctoral Candidate</div><div class="where">Ludwig Boltzmann Research Group – Senescence and Healing of Wounds, Vienna, Austria</div></div>
+
+    <h3>Additional Research Experience</h3>
+    <div class="role-block"><div class="when">2022</div><div class="what">Visiting Researcher</div><div class="where">HHMI Janelia Research Campus, Ashburn, VA, USA</div></div>
+
+    <h3>Education</h3>
+    <div class="role-block"><div class="when">PhD (viva: 2024)</div><div class="what">PhD in Life Sciences — Graduated with Distinction</div><div class="where">University of Natural Resources and Life Sciences (BOKU), Vienna, Austria<br>Thesis: The relationship between senescent cells and wound healing</div></div>
+    <div class="role-block"><div class="when">2020</div><div class="what">MSc in Cellular and Molecular Biology</div><div class="where">University of Salamanca, Salamanca, Spain<br>Research project: Functional analysis of Cdc14 phosphatase in response to DNA damage</div></div>
+    <div class="role-block"><div class="when">2018</div><div class="what">BSc in Biology</div><div class="where">International University of Ecuador (UIDE), Quito, Ecuador</div></div>
+
+    <h3>Invited Presentations &amp; Conference Activity</h3>
+    <ul class="plain">
+      <li>Montagna Symposium 2025, Gleneden Beach, OR, USA <strong>(Directors' Award)</strong></li>
+      <li>Immunology, Metabolism and Ageing FEBS Advanced Course 2025, Matrei am Brenner, Austria <strong>(IUBMB Transcontinental travel fund)</strong></li>
+      <li>6th Annual Midwest Aging Consortium (MAC) Research Symposium 2025, Rochester, MN, USA <strong>(Best Poster Award)</strong></li>
+      <li>FEBS-IUBMB-ENABLE Conference 2024, Singapore <strong>(Best Presentation Award + Travel Award)</strong></li>
+      <li>International Cell Senescence Association (ICSA) Conference 2024, Puerto Varas, Chile</li>
+      <li>European Society for Dermatological Research (ESDR) 2024, Uppsala, Sweden <strong>(Academy for Future Leaders Travel Award)</strong></li>
+      <li>Austrian Cluster for Tissue Regeneration Meeting 2024, Krems, Austria <strong>(Best Presentation Award)</strong></li>
+      <li>International Societies for Investigative Dermatology (ISID) Meeting 2023, Tokyo, Japan <strong>(Kyrle Travel Fund)</strong></li>
+      <li>International Symposium Aging Across Organelles 2023, Graz, Austria</li>
+      <li>ESDR 2023, Gleneden Beach, OR, USA <strong>(Montagna Travel Award)</strong></li>
+      <li>TERMIS-EU 2022, Krakow, Poland</li>
+      <li>FEBS Workshop: Aging and Regeneration 2022, Innsbruck, Austria</li>
+      <li>EuroScience Open Forum (ESOF) 2022, Leiden, The Netherlands <strong>(LBG Travel Award)</strong></li>
+      <li>MIA Aging Spring School and Symposium 2022, Coimbra, Portugal <strong>(Travel Award)</strong></li>
+      <li>Aging &amp; Rejuvenation Conference 2021, Barcelona, Spain</li>
+      <li>Austrian Cluster for Tissue Regeneration Meetings 2021, 2022, Vienna, Austria</li>
+      <li>2nd Annual Mayo Clinic Kogod Center on Aging Symposium 2025, Rochester, MN, USA</li>
+    </ul>
+
+    <h3>Funding</h3>
+    <ul class="plain"><li>2025 — IBRO CAJAL Advanced Neuroscience Training Programme – Training Grant (Awarded)</li></ul>
+
+    <h3>Supervising and Mentoring Activities</h3>
+    <p style="font-size:14.5px;">During doctoral and postdoctoral training, Dr. Valdivieso has mentored junior researchers, master's students and PhD students on experimental techniques. She has contributed to the training of visiting researchers at the Ludwig Boltzmann Institute and, in her current position at DZNE Bonn, is involved in day-to-day guidance of lab members.</p>
+
+    <h3>Peer Review Activity</h3>
+    <ul class="plain">
+      <li>2026–present — Nature Neuroscience (Co-reviewer)</li>
+      <li>2026–present — Nature Aging (Co-reviewer)</li>
+      <li>2025–present — npj Aging (Reviewer)</li>
+      <li>2025–present — Mechanisms of Ageing and Development (Reviewer)</li>
+    </ul>
+
+    <h3>Certifications</h3>
+    <ul class="plain"><li>2022 — FELASA-A Certification: qualified to perform and supervise animal research in accordance with European ethical and welfare standards</li></ul>
+
+    <h3>Professional Memberships</h3>
+    <ul class="plain">
+      <li>German Society for Biochemistry and Molecular Biology (GBM)</li>
+      <li>International Cell Senescence Association (ICSA)</li>
+      <li>European Association for Cancer Research (EACR)</li>
+      <li>European Society for Dermatological Research (ESDR)</li>
+    </ul>
+
+    <h3>Science Communication &amp; Other Activities</h3>
+    <p style="font-size:14.5px;">2026 — Featured in Forbes Ecuador as an Under-30 researcher (<a href="https://www.forbes.com.ec/liderazgo/la-biologa-under-30-lleva-su-talento-alemania-austria-eeuu-n85114" target="_blank" rel="noopener" style="color:var(--accent);">read the feature</a>)</p>
+  </div>
+</div>
+
+<!-- AWARDS -->
+<div class="panel" id="panel-awards">
+  <div class="panel-inner">
+    <h2>Prizes, Awards &amp; Scholarships</h2>
+    <span class="subhead">Chronological</span>
+    <div class="list-row"><div class="yr">2025</div><div>Montagna Symposium Directors' Award, Gleneden Beach, OR, USA</div></div>
+    <div class="list-row"><div class="yr">2025</div><div>IUBMB Transcontinental Youth Travel Fund, FEBS Advanced Course, Matrei am Brenner, Austria</div></div>
+    <div class="list-row"><div class="yr">2025</div><div>Best Poster Award, 6th Annual MAC Research Symposium, Rochester, MN, USA</div></div>
+    <div class="list-row"><div class="yr">2024</div><div>Best Presentation Award, FEBS-IUBMB-ENABLE Conference, Singapore</div></div>
+    <div class="list-row"><div class="yr">2024</div><div>Singapore Travel Award, FEBS-IUBMB-ENABLE Conference</div></div>
+    <div class="list-row"><div class="yr">2024</div><div>Academy for Future Leaders Travel Award, ESDR, Uppsala, Sweden</div></div>
+    <div class="list-row"><div class="yr">2024</div><div>Best Presentation Award, Austrian Cluster for Tissue Regeneration, Krems, Austria</div></div>
+    <div class="list-row"><div class="yr">2023</div><div>Montagna Travel Award, ESDR, Gleneden Beach, OR, USA</div></div>
+    <div class="list-row"><div class="yr">2023</div><div>Kyrle Travel Fund, Austrian Society of Dermatology – ISID Meeting, Tokyo, Japan</div></div>
+    <div class="list-row"><div class="yr">2023</div><div class="award">Best Paper Award, Universität für Bodenkultur Wien, Vienna, Austria</div></div>
+    <div class="list-row"><div class="yr">2022</div><div class="award">Travel Award, LBG Career Center / EuroScience Open Forum, Leiden, The Netherlands</div></div>
+    <div class="list-row"><div class="yr">2022</div><div class="award">Travel Award, MIA Aging Spring School and Symposium, Coimbra, Portugal</div></div>
+    <div class="list-row"><div class="yr">2013</div><div class="award">Merit Scholarship ($40,000), International University of Ecuador, Quito, Ecuador</div></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="panel" id="panel-contact">
+  <div class="panel-inner">
+    <h2>Contact</h2>
+    <span class="subhead">Get in touch</span>
+    <p class="muted" style="max-width:520px; margin-top:0;">University Hospital Bonn (UKB) / German Center for Neurodegenerative Diseases (DZNE), Bonn, Germany</p>
+    <div class="contact-links">
+      <a href="mailto:karla.valdivieso@dzne.de">Email</a>
+      <a href="https://scholar.google.com/citations?user=lY8iAS4AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+      <a href="https://www.linkedin.com/in/karla-valdivieso-5b89b1195/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://orcid.org/0000-0002-8058-5453" target="_blank" rel="noopener">ORCID</a>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+</script>
+
+</body>
+</html>
