@@ -15,10 +15,6 @@
     --accent:#D98BA0;
     --accent-soft:rgba(217,139,160,0.14);
     --line:rgba(246,236,221,0.14);
-    --paper-dark:#220810;
-    --ink-dark:#F6ECDD;
-    --muted-dark:#B98A95;
-    --line-dark:rgba(246,236,221,0.10);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -31,17 +27,7 @@
     font-family:'Inter',system-ui,sans-serif;
     font-size:16px;
     line-height:1.65;
-    transition:background .3s ease, color .3s ease;
   }
-  body.dark{background:var(--paper-dark); background-image:radial-gradient(circle at 88% -10%, rgba(217,139,160,0.16), transparent 45%); color:var(--ink-dark);}
-  body.dark .muted{color:var(--muted-dark);}
-  body.dark nav{border-color:var(--line-dark);}
-  body.dark section, body.dark .panel-inner{border-color:var(--line-dark);}
-  body.dark .news-item, body.dark .pub, body.dark .role-block, body.dark .list-row{border-color:var(--line-dark);}
-  body.dark .tag{background:rgba(217,139,160,0.22); color:#F6ECDD;}
-  body.dark .contact-links a, body.dark .news-item a{color:var(--ink-dark); border-color:var(--line-dark);}
-  body.dark .tab{color:var(--muted-dark);}
-  body.dark .tab.active{color:var(--ink-dark);}
 
   .wrap{max-width:1280px; margin:0 auto; padding:0 56px;}
   @media (max-width:700px){ .wrap{padding:0 22px;} }
@@ -60,13 +46,8 @@
   }
   .tab::after{content:''; position:absolute; left:14px; right:14px; bottom:3px; height:1px; background:var(--accent); transform:scaleX(0); transform-origin:left; transition:transform .2s ease;}
   .tab:hover{color:var(--ink);}
-  body.dark .tab:hover{color:var(--ink-dark);}
   .tab.active{color:var(--ink);}
   .tab.active::after{transform:scaleX(1);}
-  #themeToggle{background:none; border:1px solid var(--line); border-radius:20px; width:40px; height:24px; cursor:pointer; position:relative; padding:0; flex-shrink:0;}
-  body.dark #themeToggle{border-color:var(--line-dark);}
-  #themeToggle::after{content:'☀'; position:absolute; top:1px; left:2px; font-size:12px; width:19px; height:19px; border-radius:50%; background:var(--accent); color:#3D0F1F; display:flex; align-items:center; justify-content:center; transition:transform .25s ease;}
-  body.dark #themeToggle::after{content:'☾'; transform:translateX(15px);}
 
   .panel{display:none; animation:fadeIn .35s ease;}
   .panel.active{display:block;}
@@ -89,14 +70,11 @@
   .facts .fact{padding:0 22px; border-left:1px solid var(--line); font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);}
   .facts .fact:first-child{border-left:none; padding-left:0;}
   .facts .fact strong{display:block; font-family:'Source Serif 4', serif; font-size:19px; font-weight:500; letter-spacing:0; text-transform:none; color:var(--ink); margin-bottom:3px;}
-  body.dark .facts{border-color:var(--line-dark);}
-  body.dark .facts .fact{border-color:var(--line-dark);}
   @media (max-width:640px){ .hero-grid{grid-template-columns:1fr;} .hero-photo{width:140px; height:140px;} .facts .fact{padding:0 14px;} }
 
   .panel-inner{padding:8px 0 40px; max-width:1000px;}
   .panel h2{font-family:'Source Serif 4', serif; font-size:28px; font-weight:500; margin:0 0 6px;}
   .panel .subhead{font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); display:block; padding-bottom:22px; margin-bottom:28px; border-bottom:1px solid var(--line);}
-  body.dark .panel .subhead{border-color:var(--line-dark);}
   .panel h3{font-family:'Source Serif 4', serif; font-size:18px; font-weight:600; margin:28px 0 12px;}
   .panel h3:first-of-type{margin-top:0;}
 
@@ -106,7 +84,6 @@
   .news-item a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line);}
   .news-item a:hover{border-color:var(--accent); color:var(--accent);}
   .news-item span.plain{color:var(--ink);}
-  body.dark .news-item span.plain{color:var(--ink-dark);}
 
   .pub{padding:22px 0; border-top:1px solid var(--line); display:grid; grid-template-columns:44px 1fr; gap:6px;}
   .pub:first-of-type{border-top:none;}
@@ -129,7 +106,7 @@
   .list-row{display:grid; grid-template-columns:70px 1fr; gap:16px; padding:10px 0; border-top:1px solid var(--line); font-size:14.5px;}
   .list-row:first-of-type{border-top:none;}
   .list-row .yr{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted); padding-top:1px;}
-  .list-row .award{font-weight:600;}
+  .list-row .award{font-weight:400;}
 
   ul.plain{margin:0; padding-left:18px; font-size:14.5px;}
   ul.plain li{margin-bottom:6px;}
@@ -139,7 +116,6 @@
   .contact-links a:hover{border-color:var(--accent); color:var(--accent);}
 
   footer{padding:26px 0 40px; font-size:12.5px; color:var(--muted); border-top:1px solid var(--line); margin-top:20px;}
-  body.dark footer{border-color:var(--line-dark);}
   footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-family:'IBM Plex Mono', monospace; letter-spacing:.02em;}
 </style>
 </head>
@@ -157,7 +133,6 @@
       <li><button class="tab" data-tab="awards">Awards</button></li>
       <li><button class="tab" data-tab="contact">Contact</button></li>
     </ul>
-    <button id="themeToggle" aria-label="Toggle dark mode" onclick="document.body.classList.toggle('dark')"></button>
   </div>
 </nav>
 
@@ -194,10 +169,10 @@
     <h2>News</h2>
     <span class="subhead">Recent updates</span>
 
-    <div class="news-item"><div class="news-date">2026</div><div><a href="https://doi.org/10.1111/acel.70693" target="_blank" rel="noopener">First-author paper in Aging Cell: "Timing-Dependent Clearance of p16-Positive Cells Mitigates Radiation-Induced Accelerated Aging"</a></div></div>
+    <div class="news-item"><div class="news-date">2026</div><div><a href="https://doi.org/10.1111/acel.70693" target="_blank" rel="noopener">First-author publication in Aging Cell: "Timing-Dependent Clearance of p16-Positive Cells Mitigates Radiation-Induced Accelerated Aging"</a></div></div>
     <div class="news-item"><div class="news-date">2026</div><div><span class="plain">Busy September ahead — attending the Young ICSA Symposium and the International SENESCEL Conference in Salamanca, Spain, then heading to the Cold Spring Harbor Laboratory Meeting: Mechanisms of Aging in NY, USA</span></div></div>
     <div class="news-item"><div class="news-date">2026</div><div><span class="plain">Awarded the SENESCENCE2030 COST Action YRIC Grant</span></div></div>
-    <div class="news-item"><div class="news-date">2026</div><div><a href="https://www.nature.com/articles/s41556-026-01948-2" target="_blank" rel="noopener">First-author paper in Nature Cell Biology: "Transcription-independent induction of rapid-onset senescence is integral to healing"</a></div></div>
+    <div class="news-item"><div class="news-date">2026</div><div><a href="https://www.nature.com/articles/s41556-026-01948-2" target="_blank" rel="noopener">First-author publication in Nature Cell Biology: "Transcription-independent induction of rapid-onset senescence is integral to healing"</a></div></div>
     <div class="news-item"><div class="news-date">2026</div><div><span class="plain">Joined University Hospital Bonn (UKB) and the German Center for Neurodegenerative Diseases (DZNE) as a Postdoctoral Researcher, working on brain aging and spatially resolved approaches to neurodegeneration</span></div></div>
     <div class="news-item"><div class="news-date">2026</div><div><a href="https://www.forbes.com.ec/liderazgo/la-biologa-under-30-lleva-su-talento-alemania-austria-eeuu-n85114" target="_blank" rel="noopener">Featured in an interview with Forbes Ecuador</a></div></div>
     <div class="news-item"><div class="news-date">2025</div><div><span class="plain">Awarded the Montagna Symposium Directors' Award, Gleneden Beach, OR, USA</span></div></div>
@@ -271,7 +246,7 @@
       <div class="pub-num">07</div>
       <div class="pub-body">
         <div class="pub-title"><a href="https://www.cell.com/developmental-cell/fulltext/S1534-5807(22)00245-3" target="_blank" rel="noopener">The role of senescence in cellular plasticity: Lessons from regeneration and development and implications for age-related diseases</a></div>
-        <div class="pub-meta">Ring, N.A.R., <strong>Valdivieso, K.</strong>, Grillari, J., Redl, H., Ogrodnik, M. (2022). <em>Developmental Cell.</em> 57, 1083–1101.</div>
+        <div class="pub-meta"><strong>Valdivieso, K.</strong>, Ring, N.A.R., Grillari, J., Redl, H., Ogrodnik, M. (2022). <em>Developmental Cell.</em> 57, 1083–1101.</div>
         <div class="pub-note">Insights on senescence and plasticity in regeneration and development. BOKU Best Paper Award 2023.</div>
       </div>
     </div>
