@@ -9,35 +9,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F7F6F1;
-    --ink:#1C1C1A;
-    --muted:#6E6C63;
-    --accent:#7B2D3F;
-    --accent-soft:rgba(123,45,63,0.09);
-    --line:#DEDACF;
-    --paper-dark:#181415;
-    --ink-dark:#E9E7DF;
-    --muted-dark:#8B928F;
-    --line-dark:#332A2C;
+    --paper:#3D0F1F;
+    --ink:#F6ECDD;
+    --muted:#C9A4AC;
+    --accent:#D98BA0;
+    --accent-soft:rgba(217,139,160,0.14);
+    --line:rgba(246,236,221,0.14);
+    --paper-dark:#220810;
+    --ink-dark:#F6ECDD;
+    --muted-dark:#B98A95;
+    --line-dark:rgba(246,236,221,0.10);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
+  .topbar{height:3px; background:var(--accent);}
   body{
     margin:0;
     background:var(--paper);
-    background-image:radial-gradient(circle at 88% -10%, rgba(123,45,63,0.06), transparent 45%);
+    background-image:radial-gradient(circle at 88% -10%, rgba(217,139,160,0.10), transparent 45%);
     color:var(--ink);
     font-family:'Inter',system-ui,sans-serif;
     font-size:16px;
     line-height:1.65;
     transition:background .3s ease, color .3s ease;
   }
-  body.dark{background:var(--paper-dark); background-image:radial-gradient(circle at 88% -10%, rgba(123,45,63,0.14), transparent 45%); color:var(--ink-dark);}
+  body.dark{background:var(--paper-dark); background-image:radial-gradient(circle at 88% -10%, rgba(217,139,160,0.16), transparent 45%); color:var(--ink-dark);}
   body.dark .muted{color:var(--muted-dark);}
   body.dark nav{border-color:var(--line-dark);}
   body.dark section, body.dark .panel-inner{border-color:var(--line-dark);}
   body.dark .news-item, body.dark .pub, body.dark .role-block, body.dark .list-row{border-color:var(--line-dark);}
-  body.dark .tag{background:rgba(123,45,63,0.22); color:#D98FA1;}
+  body.dark .tag{background:rgba(217,139,160,0.22); color:#F6ECDD;}
   body.dark .contact-links a, body.dark .news-item a{color:var(--ink-dark); border-color:var(--line-dark);}
   body.dark .tab{color:var(--muted-dark);}
   body.dark .tab.active{color:var(--ink-dark);}
@@ -50,19 +51,21 @@
   nav .wrap{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px; padding:18px 48px;}
   .brand{font-family:'Source Serif 4', serif; font-weight:600; font-size:17px; display:flex; align-items:center; gap:8px;}
   .brand .dot{width:8px; height:8px; border-radius:50%; background:var(--accent); display:inline-block;}
-  .tabs{display:flex; gap:4px; list-style:none; margin:0; padding:0; align-items:center; flex-wrap:wrap;}
+  .tabs{display:flex; gap:2px; list-style:none; margin:0; padding:0; align-items:center; flex-wrap:wrap;}
   .tab{
-    background:none; border:none; cursor:pointer;
-    color:var(--muted); font-family:'Inter',sans-serif; font-size:14px; font-weight:500;
-    padding:7px 13px; border-radius:6px; transition:all .2s ease;
+    background:none; border:none; cursor:pointer; position:relative;
+    color:var(--muted); font-family:'IBM Plex Mono', monospace; font-size:11.5px; font-weight:500;
+    text-transform:uppercase; letter-spacing:.08em;
+    padding:9px 14px; transition:color .2s ease;
   }
+  .tab::after{content:''; position:absolute; left:14px; right:14px; bottom:3px; height:1px; background:var(--accent); transform:scaleX(0); transform-origin:left; transition:transform .2s ease;}
   .tab:hover{color:var(--ink);}
   body.dark .tab:hover{color:var(--ink-dark);}
-  .tab.active{color:var(--ink); background:var(--accent-soft);}
-  body.dark .tab.active{background:rgba(123,45,63,0.2);}
+  .tab.active{color:var(--ink);}
+  .tab.active::after{transform:scaleX(1);}
   #themeToggle{background:none; border:1px solid var(--line); border-radius:20px; width:40px; height:24px; cursor:pointer; position:relative; padding:0; flex-shrink:0;}
   body.dark #themeToggle{border-color:var(--line-dark);}
-  #themeToggle::after{content:'☀'; position:absolute; top:1px; left:2px; font-size:12px; width:19px; height:19px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; transition:transform .25s ease;}
+  #themeToggle::after{content:'☀'; position:absolute; top:1px; left:2px; font-size:12px; width:19px; height:19px; border-radius:50%; background:var(--accent); color:#3D0F1F; display:flex; align-items:center; justify-content:center; transition:transform .25s ease;}
   body.dark #themeToggle::after{content:'☾'; transform:translateX(15px);}
 
   .panel{display:none; animation:fadeIn .35s ease;}
@@ -71,7 +74,7 @@
 
   header.hero{padding:64px 0 48px; position:relative;}
   .hero-grid{display:grid; grid-template-columns:200px 1fr; gap:48px; align-items:start;}
-  .hero-photo{width:200px; height:200px; border-radius:6px; object-fit:cover; object-position:top; filter:grayscale(12%); box-shadow:0 14px 30px -14px rgba(28,28,26,0.35);}
+  .hero-photo{width:200px; height:200px; border-radius:6px; object-fit:cover; object-position:top; filter:grayscale(12%); box-shadow:0 14px 30px -14px rgba(0,0,0,0.45);}
   .kicker{font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:18px; display:flex; align-items:center; gap:8px;}
   .kicker svg{flex-shrink:0;}
   h1.title{font-family:'Source Serif 4', serif; font-weight:500; font-size:clamp(30px, 3.6vw, 40px); line-height:1.25; margin:0 0 16px;}
@@ -81,11 +84,19 @@
   .bio{margin-top:20px; font-size:15.5px; max-width:680px;}
   .bio p{margin:0 0 14px;}
   .bio a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent);}
-  @media (max-width:640px){ .hero-grid{grid-template-columns:1fr;} .hero-photo{width:140px; height:140px;} }
+  .bio p:first-of-type::first-letter{font-family:'Source Serif 4', serif; font-weight:600; font-size:42px; line-height:0.75; float:left; padding:5px 8px 0 0; color:var(--accent);}
+  .facts{display:flex; flex-wrap:wrap; margin-top:24px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:14px 0;}
+  .facts .fact{padding:0 22px; border-left:1px solid var(--line); font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);}
+  .facts .fact:first-child{border-left:none; padding-left:0;}
+  .facts .fact strong{display:block; font-family:'Source Serif 4', serif; font-size:19px; font-weight:500; letter-spacing:0; text-transform:none; color:var(--ink); margin-bottom:3px;}
+  body.dark .facts{border-color:var(--line-dark);}
+  body.dark .facts .fact{border-color:var(--line-dark);}
+  @media (max-width:640px){ .hero-grid{grid-template-columns:1fr;} .hero-photo{width:140px; height:140px;} .facts .fact{padding:0 14px;} }
 
   .panel-inner{padding:8px 0 40px; max-width:1000px;}
   .panel h2{font-family:'Source Serif 4', serif; font-size:28px; font-weight:500; margin:0 0 6px;}
-  .panel .subhead{font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:30px; display:block;}
+  .panel .subhead{font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); display:block; padding-bottom:22px; margin-bottom:28px; border-bottom:1px solid var(--line);}
+  body.dark .panel .subhead{border-color:var(--line-dark);}
   .panel h3{font-family:'Source Serif 4', serif; font-size:18px; font-weight:600; margin:28px 0 12px;}
   .panel h3:first-of-type{margin-top:0;}
 
@@ -97,16 +108,20 @@
   .news-item span.plain{color:var(--ink);}
   body.dark .news-item span.plain{color:var(--ink-dark);}
 
-  .pub{padding:18px 0; border-top:1px solid var(--line);}
+  .pub{padding:22px 0; border-top:1px solid var(--line); display:grid; grid-template-columns:44px 1fr; gap:6px;}
   .pub:first-of-type{border-top:none;}
+  .pub-num{font-family:'Source Serif 4', serif; font-size:26px; font-weight:500; color:var(--accent); opacity:.55; line-height:1.15;}
+  @media (max-width:640px){ .pub{grid-template-columns:1fr;} .pub-num{display:none;} }
   .pub-title{font-weight:600; font-size:16px; margin-bottom:4px;}
   .pub-title a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line);}
   .pub-title a:hover{color:var(--accent); border-color:var(--accent);}
   .pub-meta{font-size:13.5px; color:var(--muted);}
   .pub-note{font-size:13px; font-style:italic; color:var(--muted); margin-top:6px;}
 
-  .role-block{margin-bottom:18px; padding:14px 0; border-top:1px solid var(--line);}
+  .role-block{margin-bottom:18px; padding:14px 0 14px 20px; border-top:1px solid var(--line); position:relative;}
   .role-block:first-of-type{border-top:none; padding-top:0;}
+  .role-block::before{content:''; position:absolute; left:0; top:21px; width:6px; height:6px; border-radius:50%; background:var(--accent);}
+  .role-block:first-of-type::before{top:7px;}
   .role-block .when{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted);}
   .role-block .what{font-weight:600; font-size:15px; margin:3px 0 2px;}
   .role-block .where{font-size:14px; color:var(--muted);}
@@ -123,11 +138,14 @@
   .contact-links a{color:var(--ink); text-decoration:none; font-size:14.5px; border-bottom:1px solid var(--line); padding-bottom:1px;}
   .contact-links a:hover{border-color:var(--accent); color:var(--accent);}
 
-  footer{padding:30px 0 60px; font-size:13px; color:var(--muted); border-top:1px solid var(--line); margin-top:20px;}
+  footer{padding:26px 0 40px; font-size:12.5px; color:var(--muted); border-top:1px solid var(--line); margin-top:20px;}
+  body.dark footer{border-color:var(--line-dark);}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-family:'IBM Plex Mono', monospace; letter-spacing:.02em;}
 </style>
 </head>
 <body>
 
+<div class="topbar"></div>
 <nav>
   <div class="wrap">
     <div class="brand"><span class="dot"></span>Dr. Karla Valdivieso</div>
@@ -176,6 +194,9 @@
     <h2>News</h2>
     <span class="subhead">Recent updates</span>
 
+    <div class="news-item"><div class="news-date">2026</div><div><a href="https://doi.org/10.1111/acel.70693" target="_blank" rel="noopener">First-author paper in Aging Cell: "Timing-Dependent Clearance of p16-Positive Cells Mitigates Radiation-Induced Accelerated Aging"</a></div></div>
+    <div class="news-item"><div class="news-date">2026</div><div><span class="plain">Busy September ahead — attending the Young ICSA Symposium and the International SENESCEL Conference in Salamanca, Spain, then heading to the Cold Spring Harbor Laboratory Meeting: Mechanisms of Aging in NY, USA</span></div></div>
+    <div class="news-item"><div class="news-date">2026</div><div><span class="plain">Awarded the SENESCENCE2030 COST Action YRIC Grant</span></div></div>
     <div class="news-item"><div class="news-date">2026</div><div><a href="https://www.nature.com/articles/s41556-026-01948-2" target="_blank" rel="noopener">First-author paper in Nature Cell Biology: "Transcription-independent induction of rapid-onset senescence is integral to healing"</a></div></div>
     <div class="news-item"><div class="news-date">2026</div><div><span class="plain">Joined University Hospital Bonn (UKB) and the German Center for Neurodegenerative Diseases (DZNE) as a Postdoctoral Researcher, working on brain aging and spatially resolved approaches to neurodegeneration</span></div></div>
     <div class="news-item"><div class="news-date">2026</div><div><a href="https://www.forbes.com.ec/liderazgo/la-biologa-under-30-lleva-su-talento-alemania-austria-eeuu-n85114" target="_blank" rel="noopener">Featured in an interview with Forbes Ecuador</a></div></div>
@@ -183,9 +204,6 @@
     <div class="news-item"><div class="news-date">2025</div><div><span class="plain">Best Poster Award, 6th Annual Midwest Aging Consortium (MAC) Research Symposium, Rochester, MN, USA</span></div></div>
     <div class="news-item"><div class="news-date">2025</div><div><span class="plain">FEBS Advanced Course IUBMB Transcontinental Youth Travel Fund awarded for the Immunology, Metabolism and Ageing course, Austria</span></div></div>
     <div class="news-item"><div class="news-date">2025</div><div><span class="plain">Joined the Mayo Clinic as a Postdoctoral Research Fellow</span></div></div>
-    <div class="news-item"><div class="news-date">2024</div><div><span class="plain">FEBS-IUBMB-ENABLE Conference Best Presentation Award, Singapore</span></div></div>
-    <div class="news-item"><div class="news-date">2024</div><div><span class="plain">Joined the Ludwig Boltzmann Institute for Experimental and Clinical Traumatology as a Postdoctoral Research Scientist</span></div></div>
-    <div class="news-item"><div class="news-date">2024</div><div><span class="plain">PhD in Life Sciences completed at BOKU Vienna, graduated with distinction</span></div></div>
   </div>
 </div>
 
@@ -196,45 +214,75 @@
     <span class="subhead">Selected works</span>
 
     <div class="pub">
-      <div class="pub-title"><a href="https://www.nature.com/articles/s41556-026-01948-2" target="_blank" rel="noopener">1. Transcription-independent induction of rapid-onset senescence is integral to healing</a></div>
-      <div class="pub-meta">Valdivieso, K., Rozmaric, T., Victorelli, S., et al. (2026). <em>Nature Cell Biology.</em></div>
-      <div class="pub-note">First demonstration that rapid-onset senescence operates independently of de novo transcription during wound repair, redefining the mechanistic basis of beneficial senescence.</div>
+      <div class="pub-num">01</div>
+      <div class="pub-body">
+        <div class="pub-title"><a href="https://doi.org/10.1111/acel.70693" target="_blank" rel="noopener">Timing-dependent clearance of p16-positive cells mitigates radiation-induced accelerated aging</a></div>
+        <div class="pub-meta"><strong>Valdivieso, K.</strong>, Weigand, M., Costa, D.G., et al. (2026). <em>Aging Cell.</em> 25, e70693.</div>
+        <div class="pub-note">Shows that the therapeutic benefit of senolytic intervention after irradiation is timing-dependent: early clearance of p16-positive cells has no effect on outcomes, whereas delayed clearance markedly reduces frailty, restores blood–brain barrier integrity, improves cognitive function, and extends survival.</div>
+      </div>
     </div>
 
     <div class="pub">
-      <div class="pub-title"><a href="https://link.springer.com/article/10.1038/s44321-026-00400-0" target="_blank" rel="noopener">2. Tomatidine is a senotherapeutic compound that improves cognitive function and reduces cellular senescence in aged mice</a></div>
-      <div class="pub-meta">Costa, D.G., ..., Valdivieso, K., et al. (2026). <em>EMBO Molecular Medicine.</em> 18, 1530–1550.</div>
-      <div class="pub-note">Identifies tomatidine as a novel senolytic with translational potential for cognitive aging.</div>
+      <div class="pub-num">02</div>
+      <div class="pub-body">
+        <div class="pub-title"><a href="https://www.nature.com/articles/s41556-026-01948-2" target="_blank" rel="noopener">Transcription-independent induction of rapid-onset senescence is integral to healing</a></div>
+        <div class="pub-meta"><strong>Valdivieso, K.</strong>, Rozmaric, T., Victorelli, S., et al. (2026). <em>Nature Cell Biology.</em></div>
+        <div class="pub-note">First demonstration that rapid-onset senescence operates independently of de novo transcription during wound repair, redefining the mechanistic basis of beneficial senescence.</div>
+      </div>
     </div>
 
     <div class="pub">
-      <div class="pub-title"><a href="https://doi.org/10.1093/gerona/glaf280" target="_blank" rel="noopener">3. The Sixth Annual Symposium of the Midwest Aging Consortium</a></div>
-      <div class="pub-meta">Sturmlechner, I., Ashiqueali, S.A., ..., Valdivieso, K., et al. (2025). <em>The Journals of Gerontology: Series A.</em> 81(3), glaf280.</div>
-      <div class="pub-note">Consortium proceedings reflecting cross-institutional aging research network activity.</div>
+      <div class="pub-num">03</div>
+      <div class="pub-body">
+        <div class="pub-title"><a href="https://link.springer.com/article/10.1038/s44321-026-00400-0" target="_blank" rel="noopener">Tomatidine is a senotherapeutic compound that improves cognitive function and reduces cellular senescence in aged mice</a></div>
+        <div class="pub-meta">Costa, D.G., ..., <strong>Valdivieso, K.</strong>, et al. (2026). <em>EMBO Molecular Medicine.</em> 18, 1530–1550.</div>
+        <div class="pub-note">Identifies tomatidine as a novel senolytic with translational potential for cognitive aging.</div>
+      </div>
     </div>
 
     <div class="pub">
-      <div class="pub-title"><a href="https://www.jidonline.org/article/S0022-202X(25)00560-3/abstract" target="_blank" rel="noopener">4. Platform for drug testing and studying rapid-onset signaling and induction of cellular phenotypes ex vivo</a></div>
-      <div class="pub-meta">Valdivieso, K., Dworak, H., Schädl, B., et al. (2025). <em>Journal of Investigative Dermatology.</em> 145, 3237–3240.</div>
-      <div class="pub-note">Describes a reproducible ex vivo skin platform enabling rapid screening of senescence-inducing compounds; directly applicable to drug discovery pipelines in dermatology and aging research.</div>
+      <div class="pub-num">04</div>
+      <div class="pub-body">
+        <div class="pub-title"><a href="https://doi.org/10.1093/gerona/glaf280" target="_blank" rel="noopener">The Sixth Annual Symposium of the Midwest Aging Consortium</a></div>
+        <div class="pub-meta">Sturmlechner, I., Ashiqueali, S.A., ..., <strong>Valdivieso, K.</strong>, et al. (2025). <em>The Journals of Gerontology: Series A.</em> 81(3), glaf280.</div>
+        <div class="pub-note">Consortium proceedings reflecting cross-institutional aging research network activity.</div>
+      </div>
     </div>
 
     <div class="pub">
-      <div class="pub-title"><a href="https://www.cell.com/developmental-cell/fulltext/S1534-5807(23)00154-5" target="_blank" rel="noopener">5. The p-rpS6-zone delineates wounding responses and the healing process</a></div>
-      <div class="pub-meta">Ring, N.A.R., Dworak, H., ..., Valdivieso, K., et al. (2023). <em>Developmental Cell.</em> 58, 981–992.</div>
-      <div class="pub-note">Discovery of a spatially distinct rpS6-phosphorylation zone governing wound response patterning.</div>
+      <div class="pub-num">05</div>
+      <div class="pub-body">
+        <div class="pub-title"><a href="https://www.jidonline.org/article/S0022-202X(25)00560-3/abstract" target="_blank" rel="noopener">Platform for drug testing and studying rapid-onset signaling and induction of cellular phenotypes ex vivo</a></div>
+        <div class="pub-meta"><strong>Valdivieso, K.</strong>, Dworak, H., Schädl, B., et al. (2025). <em>Journal of Investigative Dermatology.</em> 145, 3237–3240.</div>
+        <div class="pub-note">Describes a reproducible ex vivo skin platform enabling rapid screening of senescence-inducing compounds; directly applicable to drug discovery pipelines in dermatology and aging research.</div>
+      </div>
     </div>
 
     <div class="pub">
-      <div class="pub-title"><a href="https://www.cell.com/developmental-cell/fulltext/S1534-5807(22)00245-3" target="_blank" rel="noopener">6. The role of senescence in cellular plasticity: Lessons from regeneration and development and implications for age-related diseases</a></div>
-      <div class="pub-meta">Ring, N.A.R., Valdivieso, K., Grillari, J., Redl, H., Ogrodnik, M. (2022). <em>Developmental Cell.</em> 57, 1083–1101.</div>
-      <div class="pub-note">Insights on senescence and plasticity in regeneration and development. BOKU Best Paper Award 2023.</div>
+      <div class="pub-num">06</div>
+      <div class="pub-body">
+        <div class="pub-title"><a href="https://www.cell.com/developmental-cell/fulltext/S1534-5807(23)00154-5" target="_blank" rel="noopener">The p-rpS6-zone delineates wounding responses and the healing process</a></div>
+        <div class="pub-meta">Ring, N.A.R., Dworak, H., ..., <strong>Valdivieso, K.</strong>, et al. (2023). <em>Developmental Cell.</em> 58, 981–992.</div>
+        <div class="pub-note">Discovery of a spatially distinct rpS6-phosphorylation zone governing wound response patterning.</div>
+      </div>
     </div>
 
     <div class="pub">
-      <div class="pub-title"><a href="https://doi.org/10.1016/j.mad.2021.111588" target="_blank" rel="noopener">7. Promises and challenges of senolytics in skin regeneration, pathology and ageing</a></div>
-      <div class="pub-meta">Pils, V., Ring, N.A.R., Valdivieso, K., et al. (2021). <em>Mechanisms of Ageing and Development.</em> 200, 111588.</div>
-      <div class="pub-note">Critical appraisal of senolytic strategies in the skin; widely cited in the senescence and wound healing literature.</div>
+      <div class="pub-num">07</div>
+      <div class="pub-body">
+        <div class="pub-title"><a href="https://www.cell.com/developmental-cell/fulltext/S1534-5807(22)00245-3" target="_blank" rel="noopener">The role of senescence in cellular plasticity: Lessons from regeneration and development and implications for age-related diseases</a></div>
+        <div class="pub-meta">Ring, N.A.R., <strong>Valdivieso, K.</strong>, Grillari, J., Redl, H., Ogrodnik, M. (2022). <em>Developmental Cell.</em> 57, 1083–1101.</div>
+        <div class="pub-note">Insights on senescence and plasticity in regeneration and development. BOKU Best Paper Award 2023.</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-num">08</div>
+      <div class="pub-body">
+        <div class="pub-title"><a href="https://doi.org/10.1016/j.mad.2021.111588" target="_blank" rel="noopener">Promises and challenges of senolytics in skin regeneration, pathology and ageing</a></div>
+        <div class="pub-meta">Pils, V., Ring, N.A.R., <strong>Valdivieso, K.</strong>, et al. (2021). <em>Mechanisms of Ageing and Development.</em> 200, 111588.</div>
+        <div class="pub-note">Critical appraisal of senolytic strategies in the skin; widely cited in the senescence and wound healing literature.</div>
+      </div>
     </div>
   </div>
 </div>
@@ -248,19 +296,22 @@
     <h3>Professional Experience</h3>
     <div class="role-block"><div class="when">01/02/2026 – present</div><div class="what">Postdoctoral Researcher</div><div class="where">German Center for Neurodegenerative Diseases (DZNE) and University Hospital Bonn, Bonn, Germany</div></div>
     <div class="role-block"><div class="when">01/01/2025 – 31/01/2026</div><div class="what">Postdoctoral Research Fellow</div><div class="where">Mayo Clinic, Rochester, MN, USA</div></div>
-    <div class="role-block"><div class="when">01/07/2024 – 31/12/2024</div><div class="what">Postdoctoral Research Scientist</div><div class="where">Ludwig Boltzmann Institute for Experimental and Clinical Traumatology, Vienna, Austria</div></div>
+    <div class="role-block"><div class="when">01/07/2024 – 31/12/2024</div><div class="what">Postdoctoral Researcher</div><div class="where">Ludwig Boltzmann Institute for Experimental and Clinical Traumatology, Vienna, Austria</div></div>
     <div class="role-block"><div class="when">01/01/2021 – 30/06/2024</div><div class="what">Doctoral Candidate</div><div class="where">Ludwig Boltzmann Research Group – Senescence and Healing of Wounds, Vienna, Austria</div></div>
 
     <h3>Additional Research Experience</h3>
     <div class="role-block"><div class="when">2022</div><div class="what">Visiting Researcher</div><div class="where">HHMI Janelia Research Campus, Ashburn, VA, USA</div></div>
 
     <h3>Education</h3>
-    <div class="role-block"><div class="when">PhD (viva: 2024)</div><div class="what">PhD in Life Sciences — Graduated with Distinction</div><div class="where">University of Natural Resources and Life Sciences (BOKU), Vienna, Austria<br>Thesis: The relationship between senescent cells and wound healing</div></div>
+    <div class="role-block"><div class="when">PhD (viva: June 2024)</div><div class="what">PhD in Life Sciences — Graduated with Distinction</div><div class="where">University of Natural Resources and Life Sciences (BOKU), Vienna, Austria<br>Thesis: The relationship between senescent cells and wound healing</div></div>
     <div class="role-block"><div class="when">2020</div><div class="what">MSc in Cellular and Molecular Biology</div><div class="where">University of Salamanca, Salamanca, Spain<br>Research project: Functional analysis of Cdc14 phosphatase in response to DNA damage</div></div>
     <div class="role-block"><div class="when">2018</div><div class="what">BSc in Biology</div><div class="where">International University of Ecuador (UIDE), Quito, Ecuador</div></div>
 
     <h3>Invited Presentations &amp; Conference Activity</h3>
     <ul class="plain">
+      <li>Cold Spring Harbor Laboratory Meeting: Mechanisms of Aging 2026, NY, USA</li>
+      <li>Young ICSA Symposium 2026, Salamanca, Spain</li>
+      <li>International SENESCEL Conference 2026, Salamanca, Spain</li>
       <li>Montagna Symposium 2025, Gleneden Beach, OR, USA <strong>(Directors' Award)</strong></li>
       <li>Immunology, Metabolism and Ageing FEBS Advanced Course 2025, Matrei am Brenner, Austria <strong>(IUBMB Transcontinental travel fund)</strong></li>
       <li>6th Annual Midwest Aging Consortium (MAC) Research Symposium 2025, Rochester, MN, USA <strong>(Best Poster Award)</strong></li>
@@ -281,7 +332,10 @@
     </ul>
 
     <h3>Funding</h3>
-    <ul class="plain"><li>2025 — IBRO CAJAL Advanced Neuroscience Training Programme – Training Grant (Awarded)</li></ul>
+    <ul class="plain">
+      <li>2026 — SENESCENCE2030 COST Action Young Researcher and Innovator Contribution (YRIC) Grant (Awarded)</li>
+      <li>2025 — IBRO CAJAL Advanced Neuroscience Training Programme – Training Grant (Awarded)</li>
+    </ul>
 
     <h3>Supervising and Mentoring Activities</h3>
     <p style="font-size:14.5px;">During doctoral and postdoctoral training, Dr. Valdivieso has mentored junior researchers, summer interns, master's students and PhD students on experimental techniques at the Ludwig Boltzmann Institute, Mayo Clinic and, in her current position at DZNE Bonn.</p>
@@ -315,6 +369,8 @@
   <div class="panel-inner">
     <h2>Prizes, Awards &amp; Scholarships</h2>
     <span class="subhead">Chronological</span>
+    <div class="list-row"><div class="yr">2026</div><div>SENESCENCE2030 COST Action YRIC Grant</div></div>
+    <div class="list-row"><div class="yr">2026</div><div>IUBMB Travel Award, Cold Spring Harbor Laboratory Meeting: Mechanisms of Aging, NY, USA</div></div>
     <div class="list-row"><div class="yr">2025</div><div>Montagna Symposium Directors' Award, Gleneden Beach, OR, USA</div></div>
     <div class="list-row"><div class="yr">2025</div><div>IUBMB Transcontinental Youth Travel Fund, FEBS Advanced Course, Matrei am Brenner, Austria</div></div>
     <div class="list-row"><div class="yr">2025</div><div>Best Poster Award, 6th Annual MAC Research Symposium, Rochester, MN, USA</div></div>
@@ -347,6 +403,12 @@
 </div>
 
 </div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Karla Valdivieso</span>
+  </div>
+</footer>
 
 <script>
   const tabs = document.querySelectorAll('.tab');
